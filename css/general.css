@@ -37,15 +37,43 @@ html, body {
     text-decoration: none;
 
     display: flex;
-    align-items: center;        /* vertical centering */
-    justify-content: center;    /* horizontal centering */
-    gap: 10px;                  /* space between icon and text */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+/* Hover effect for NON-current items only */
+.sidebar-menu-content:not(.current):hover {
+    background-color: #252c6e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Active (selected) state */
 .current {
     background-color: #FBD117;
     color: #303781;
 }
+
+/* Icons */
 .menu-icon {
     width: 24px;
     height: 24px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Icon animation only for NON-current hover */
+.sidebar-menu-content:not(.current):hover .menu-icon {
+    transform: scale(1.12);
+    opacity: 0.9;
+}
+
+/* Click feedback */
+.sidebar-menu-content:active {
+    transform: scale(0.97);
 }
