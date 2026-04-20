@@ -5,50 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard | NUCLICKS</title>
 
-    <link rel="stylesheet" href="css/gen.css">
+    <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/StudentDashboard.css">
 </head>
 <body>
     <div class="layout-wrapper">
         <div class="sidebar-menu">
             <img class="sidebar-menu-icon" src="assets/logos/NU_ICON_White.png" alt="NULP Logo">
-            <a href="" class="sidebar-menu-content current">Home</a>
-            <a href="" class="sidebar-menu-content current">Classes</a>
+            <a href="" class="sidebar-menu-content current">
+                <img src="assets/icons/calendar.svg" alt="Calendar" class="menu-icon"/>
+                Home
+            </a>
+            <a href="" class="sidebar-menu-content current">
+                <img src="assets/icons/calendar.svg" alt="Calendar" class="menu-icon"/>
+                Classes
+            </a>
         </div>
         <div class="dashboard-panel">
             <div class="dashboard-left">
                 <div class="dashboard-left-heading">
                     <div class="logo-student-db">
                         <img class="logo-head" src="assets/logos/NULIPA_Logo_Blue.png" alt="NULP Logo">
-
                         <div class="title-head">
                         <p class="title-text">Student</p>
                         <p class="title-text">Dashboard</p>
                         </div>
                     </div>
-
-                    
                     <div class="enrolled-archived">
-                    <div class="tab active">
-                        <span>Enrolled</span>
-                        <span class="count enrolled-count">20</span>
+                        <div class="tab active">
+                            <span>Enrolled</span>
+                            <span class="count enrolled-count">20</span>
+                        </div>
+                        <div class="tab">
+                            <span>Archived</span>
+                            <span class="count archived-count">37</span>
+                        </div>
                     </div>
-
-                    <div class="tab">
-                        <span>Archived</span>
-                        <span class="count archived-count">37</span>
-                    </div>
-                    </div>
-
                 </div>
-                <div>
+                <div class="classes-container">
+
+                    <div class="classes-container">
+                        <div class="classes-grid">
+
+                            <!-- CLASS CARD 1 -->
+                            <div class="class-card">
+                            <img src="assets/meme.png" alt="Introduction to Computer System" class="class-image">
+
+                            <div class="class-content">
+                                <h3 class="class-title">Introduction to Computer System</h3>
+
+                                <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-percent">75%</span>
+                                    <button class="resume-btn">Resume</button>
+                                </div>
+
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                                </div>
+
+                                <div class="class-meta">
+                                <span>🕒 2h 15m</span>
+                                <span>📘 4 Lessons</span>
+                                </div>
+                            </div>
+                            </div>
+
+                            <!-- CLASS CARD 2 -->
+                            <div class="class-card">
+                            <img src="assets/meme.png" alt="Nationalian Course" class="class-image">
+
+                            <div class="class-content">
+                                <h3 class="class-title">Nationalian Course</h3>
+
+                                <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-percent">75%</span>
+                                    <button class="resume-btn">Resume</button>
+                                </div>
+
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                                </div>
+
+                                <div class="class-meta">
+                                <span>🕒 1h 45m</span>
+                                <span>📘 4 Lessons</span>
+                                </div>
+                            </div>
+                            </div>
+
+                            <!-- CLASS CARD 3 -->
+                            <div class="class-card">
+                            <img src="assets/meme.png" alt="European History" class="class-image">
+
+                            <div class="class-content">
+                                <h3 class="class-title">European History</h3>
+
+                                <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-percent">75%</span>
+                                    <button class="resume-btn">Resume</button>
+                                </div>
+
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                                </div>
+
+                                <div class="class-meta">
+                                <span>🕒 3h 10m</span>
+                                <span>📘 4 Lessons</span>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+                        </div>
 
                 </div>
             </div>
             <div class="dashboard-right">
-                <div>
-                    <h1>Hello User!</h1>
+                <div class="notif-info-container">
+                    <div class="notif-bell-wrapper">
+                        <img src="assets/icons/bell.svg" alt="Notifications" class="notif-bell-icon">
+
+                        <span class="notif-badge">17</span>
+                    </div>
+
+                    <div class="user-info">
+                        <div class="user-name-email">
+                            <p class="user-name">Stalin, Joseph</p>
+                            <p class="user-email">josephstalin@gmail.com</p>
+                        </div>
+                        <div class="user-photo-wrapper">
+                            <img src="assets/sample_user.jpg" alt="Sample User" class="user-photo">
+
+                            <button class="user-status-toggle">
+                                ✓
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-title">
+                        <img src="assets/icons/calendar.svg" alt="Calendar" />
+                        <span>Calendar</span>
+                        </div>
+
+                        <div class="calendar-month">
+                        <button class="cal-nav">&lt;</button>
+                        <span>Mar</span>
+                        <button class="cal-nav">&gt;</button>
+                        </div>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <!-- Days header -->
+                        <span class="day-label">S</span>
+                        <span class="day-label">M</span>
+                        <span class="day-label">T</span>
+                        <span class="day-label">W</span>
+                        <span class="day-label">T</span>
+                        <span class="day-label">F</span>
+                        <span class="day-label">S</span>
+
+                        <!-- Empty leading days -->
+                        <span class="day empty"></span>
+                        <span class="day empty"></span>
+
+                        <!-- Dates -->
+                        <span class="day">1</span>
+                        <span class="day">2</span>
+                        <span class="day">3</span>
+                        <span class="day">4</span>
+                        <span class="day">5</span>
+                        <span class="day">6</span>
+                        <span class="day">7</span>
+                        <span class="day">8</span>
+                        <span class="day today">9</span>
+                        <span class="day">10</span>
+                        <span class="day">11</span>
+                        <span class="day">12</span>
+                        <span class="day">13</span>
+                        <span class="day">14</span>
+                        <span class="day">15</span>
+                        <span class="day">16</span>
+                        <span class="day">17</span>
+                        <span class="day">18</span>
+                        <span class="day">19</span>
+                        <span class="day">20</span>
+                        <span class="day">21</span>
+                        <span class="day">22</span>
+                        <span class="day">23</span>
+                        <span class="day">24</span>
+                        <span class="day">25</span>
+                        <span class="day">26</span>
+                        <span class="day">27</span>
+                        <span class="day">28</span>
+                        <span class="day">29</span>
+                        <span class="day">30</span>
+                        <span class="day">31</span>
+                    </div>
+                    </div>
                 <div>
 
                 </div>

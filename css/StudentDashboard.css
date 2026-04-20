@@ -6,41 +6,7 @@
     background-color: #EBEBEB;
     height: 100%;
 }
-.sidebar-menu {
-    background-color: #303781;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
 
-    height: 100%;
-    padding: 10px;
-}
-.sidebar-menu-icon {
-    width: 120px;
-    height: auto;
-    margin: 70px 20px 30px 20px;
-}
-.sidebar-menu-content {
-    height: auto;
-    width: 200px;
-    padding: 10px 10px 10px 10px;
-
-    font-family: 'Poppins', sans-serif;
-    margin: 0px 20px 0px 20px;
-    border-radius: 7px;
-    background-color: #303781;
-    color: #ffffff;
-
-    font-weight: 600;
-    font-size: 17px;
-    text-decoration: none;
-    text-align: center;
-}
-.current {
-    background-color: #FBD117;
-    color: #303781;
-}
 
 /* CONTENT FOR STUDENT DASHBOARD */
 .dashboard-panel {
@@ -62,7 +28,7 @@
 }
 
 .dashboard-right {
-  flex: 2;                 
+  flex: 3;                 
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -162,4 +128,336 @@
   border-color: #ffffff;
   color: #ffffff;
 }
+
+/* CARDS/ITEMS FOR THE ENROLLED CLASSES */
+
+/* CLASSES GRID */
+.classes-container {
+  margin-top: 10px;
+}
+
+.classes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .classes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .classes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CLASS CARD */
+.class-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.class-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE */
+.class-image {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+
+/* CONTENT */
+.class-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.class-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #303781;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* PROGRESS */
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-percent {
+  font-size: 12px;
+  font-weight: 600;
+  color: #303781;
+}
+
+/* RESUME BUTTON */
+.resume-btn {
+  background-color: #FBD117;
+  border: none;
+  border-radius: 999px;
+  padding: 4px 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+  color: #303781;
+  cursor: pointer;
+}
+
+.resume-btn:hover {
+  background-color: #f6c800;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  height: 6px;
+  background-color: #e6e6e6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #303781;
+  border-radius: 999px;
+}
+
+/* META INFO */
+.class-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #666666;
+}
+
 /* ITEMS INSIDE DASHBOARD RIGHT */
+.notif-info-container {
+  margin-left: auto;
+  padding: 0 10px 0 0;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+}
+.notif-bell-wrapper {
+  position: relative;          /* anchor for badge */
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+.notif-bell-icon {
+  width: 34px;
+  height: 34px;
+}
+.notif-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+
+  background-color: #FBD117; /* NU Yellow */
+  color: #303781;            /* NU Blue */
+
+  font-size: 11px;
+  font-weight: 700;
+
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.user-name-email {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
+  align-items: flex-end
+}
+.user-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0px;
+  margin: 0px;
+}
+.user-email {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  margin-left: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.user-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-photo-wrapper {
+  position: relative;      /* ✅ allows absolute positioning inside */
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+.user-status-toggle {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+
+  background-color: #2d7ff9; /* blue */
+  color: #ffcc00;            /* yellow check */
+
+  border: 2px solid #fff;   /* white ring like the screenshot */
+  font-size: 12px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  padding: 0;
+}
+
+/* FOR THE CALENDAR */
+.calendar-container {
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.calendar-container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 16px;
+}
+
+/* Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.calendar-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-weight: 600;
+  color: #303781;
+}
+
+.calendar-title img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Month navigation */
+.calendar-month {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 600;
+  color: #303781;
+}
+
+.cal-nav {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+
+/* Day labels */
+.day-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #999;
+}
+
+/* Days */
+.day {
+  font-size: 12px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.day:hover {
+  background-color: #f1f1f1;
+}
+
+.day.empty {
+  pointer-events: none;
+}
+
+/* Today highlight */
+.day.today {
+  background-color: #303781;
+  color: #ffffff;
+  font-weight: 700;
+}
