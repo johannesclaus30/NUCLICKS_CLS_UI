@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | NUCLICKS</title>
+    <title>Students | NUCLICKS Super Admin</title>
 
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/SuperAdmin.css">
@@ -20,20 +20,18 @@
             <a href="SuperAdmin_Course.html" class="sidebar-menu-content"><img src="assets/icons/book-white.svg" alt="Course" class="menu-icon"/>Courses</a>
         </div>
         <div class="dashboard-panel">
-            <!-- <div class="dashboard-left"> -->
-                <div class="dashboard-left-heading">
-                    <div class="logo-student-db">
-                        <img class="logo-head" src="assets/logos/NULIPA_Logo_Blue.png" alt="NULP Logo">
-                        <div class="title-head">
+            <div class="dashboard-left-heading">
+                <div class="logo-student-db">
+                    <img class="logo-head" src="assets/logos/NULIPA_Logo_Blue.png" alt="NULP Logo">
+                    <div class="title-head">
                         <p class="title-text">Super Admin</p>
                         <p class="title-text">Dashboard</p>
-                        </div>
                     </div>
-                    
-                    <div class="notif-info-container">
+                </div>
+                
+                <div class="notif-info-container">
                     <div class="notif-bell-wrapper">
                         <img src="assets/icons/bell.svg" alt="Notifications" class="notif-bell-icon">
-
                         <span class="notif-badge">17</span>
                     </div>
 
@@ -43,89 +41,126 @@
                             <p class="user-email">josephstalin@gmail.com</p>
                         </div>
                         <div class="user-photo-wrapper">
-                        <img src="assets/sample_user.jpg" alt="Sample User" class="user-photo">
-
+                            <img src="assets/sample_user.jpg" alt="Sample User" class="user-photo">
                             <button class="user-status-toggle">✓</button>
-
-                            <!-- DROPDOWN -->
                             <div class="profile-dropdown">
                                 <a href="index.html" class="dropdown-item logout-btn">Logout</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                </div>
-                <div class="admin-content">
-                    <!-- STATS -->
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon blue">👤</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Total Teachers</p>
-                                <p class="stat-value">45</p>
-                            </div>
-                        </div>
+            <div class="admin-content">
+                <!-- STUDENT MANAGEMENT -->
+                <div class="student-management">
 
-                        <div class="stat-card">
-                            <div class="stat-icon green">🎓</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Total Students</p>
-                                <p class="stat-value">1,234</p>
-                            </div>
-                        </div>
+                    <!-- HEADER with toggle -->
+                    <div class="student-header">
+                        <h2 class="student-title">Student Management</h2>
 
-                        <div class="stat-card">
-                            <div class="stat-icon purple">📘</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Active Courses</p>
-                                <p class="stat-value">28</p>
+                        <div class="student-actions">
+                            <!-- ACTIVE / ARCHIVED TOGGLE -->
+                            <div class="view-toggle">
+                                <button id="btnActiveStudents" class="toggle-btn active">Active Students</button>
+                                <button id="btnArchivedStudents" class="toggle-btn">Archived Students</button>
                             </div>
-                        </div>
-
-                        <div class="stat-card">
-                            <div class="stat-icon orange">📝</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Pending Tests</p>
-                                <p class="stat-value">12</p>
-                            </div>
+                            <input type="text" class="student-search" placeholder="Search students...">
+                            <button class="add-student-btn">+ Add Student</button>
                         </div>
                     </div>
 
-                    <!-- RECENT ACTIVITY -->
-                    <div class="activity-card">
-                        <h3 class="activity-title">Recent Activity</h3>
-
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">New teacher registered</p>
-                                <p class="activity-sub">John Doe</p>
-                            </div>
-                            <span class="activity-time">2 hours ago</span>
+                    <!-- ACTIVE STUDENTS TABLE (visible by default) -->
+                    <div id="activeStudentView" class="table-view-container show">
+                        <div class="student-table-card">
+                            <table class="student-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Student No.</th>
+                                        <th>Program</th>
+                                        <th>Year Level</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-student-id="1">
+                                        <td>Juan Dela Cruz</td>
+                                        <td>juan.delacruz@nu.edu.ph</td>
+                                        <td>2021‑01234</td>
+                                        <td>BSIT</td>
+                                        <td>3rd Year</td>
+                                        <td><span class="status active">Active</span></td>
+                                        <td class="actions">
+                                            <button class="icon-btn edit" title="Edit">
+                                                <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                                            </button>
+                                            <button class="icon-btn archive" title="Archive">
+                                                <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr data-student-id="2">
+                                        <td>Maria Santos</td>
+                                        <td>maria.santos@nu.edu.ph</td>
+                                        <td>2022‑04567</td>
+                                        <td>BSCS</td>
+                                        <td>2nd Year</td>
+                                        <td><span class="status active">Active</span></td>
+                                        <td class="actions">
+                                            <button class="icon-btn edit" title="Edit">
+                                                <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                                            </button>
+                                            <button class="icon-btn archive" title="Archive">
+                                                <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr data-student-id="3">
+                                        <td>Kevin Reyes</td>
+                                        <td>kevin.reyes@nu.edu.ph</td>
+                                        <td>2020‑07891</td>
+                                        <td>BSECE</td>
+                                        <td>4th Year</td>
+                                        <td><span class="status active">Active</span></td>
+                                        <td class="actions">
+                                            <button class="icon-btn edit" title="Edit">
+                                                <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                                            </button>
+                                            <button class="icon-btn archive" title="Archive">
+                                                <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
 
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">Course published</p>
-                                <p class="activity-sub">Advanced Mathematics</p>
+                    <!-- ARCHIVED STUDENTS TABLE (hidden initially) -->
+                    <div id="archivedStudentView" class="table-view-container">
+                        <div class="teacher-archived-section">
+                            <h3 class="archived-title">Archived Students</h3>
+                            <div class="student-table-card archived">
+                                <table class="student-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Student No.</th>
+                                            <th>Program</th>
+                                            <th>Year Level</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="archivedStudents">
+                                        <!-- Archived rows will be moved here dynamically -->
+                                    </tbody>
+                                </table>
                             </div>
-                            <span class="activity-time">4 hours ago</span>
-                        </div>
-
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">Student enrolled</p>
-                                <p class="activity-sub">Jane Smith</p>
-                            </div>
-                            <span class="activity-time">5 hours ago</span>
-                        </div>
-
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">Evaluation submitted</p>
-                                <p class="activity-sub">Chemistry Course</p>
-                            </div>
-                            <span class="activity-time">2 days ago</span>
                         </div>
                     </div>
 
@@ -135,20 +170,109 @@
     </div>
 
     <script>
-    const userProfile = document.querySelector('.user-photo-wrapper');
-    const dropdown = document.querySelector('.profile-dropdown');
+        // Active table body
+        const activeStudentBody = document.querySelector('#activeStudentView .student-table tbody');
+        // Archived table body
+        const archivedStudentBody = document.getElementById('archivedStudents');
 
-    userProfile.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('active');
-    });
+        // View toggle elements
+        const btnActive = document.getElementById('btnActiveStudents');
+        const btnArchived = document.getElementById('btnArchivedStudents');
+        const activeView = document.getElementById('activeStudentView');
+        const archivedView = document.getElementById('archivedStudentView');
 
-    document.addEventListener('click', () => {
-    dropdown.classList.remove('active');
-    });
+        // Toggle view between Active and Archived
+        btnActive.addEventListener('click', () => {
+            activeView.classList.add('show');
+            archivedView.classList.remove('show');
+            btnActive.classList.add('active');
+            btnArchived.classList.remove('active');
+        });
 
+        btnArchived.addEventListener('click', () => {
+            archivedView.classList.add('show');
+            activeView.classList.remove('show');
+            btnArchived.classList.add('active');
+            btnActive.classList.remove('active');
+        });
+
+        // Delegate all button actions (archive/restore/edit)
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.icon-btn');
+            if (!btn) return;
+
+            const row = btn.closest('tr');
+            const name = row.children[0].innerText;
+
+            // EDIT (simple placeholder)
+            if (btn.classList.contains('edit')) {
+                alert(`Edit form for ${name} will open here.`);
+                return;
+            }
+
+            // ARCHIVE an active student
+            if (btn.classList.contains('archive')) {
+                if (!confirm(`Archive ${name}? The account will be disabled.`)) return;
+
+                // Change status badge
+                row.querySelector('.status').outerHTML = '<span class="status archived">Archived</span>';
+
+                // Replace actions with Restore only
+                row.querySelector('.actions').innerHTML = `
+                    <button class="icon-btn restore" title="Restore">
+                        <img src="assets/icons/restore-blue.svg" alt="Restore" class="actions-icon">
+                    </button>
+                `;
+
+                archivedStudentBody.appendChild(row);
+                return;
+            }
+
+            // RESTORE an archived student
+            if (btn.classList.contains('restore')) {
+                if (!confirm(`Restore ${name}?`)) return;
+
+                // Restore status badge
+                row.querySelector('.status').outerHTML = '<span class="status active">Active</span>';
+
+                // Restore actions: edit + archive
+                row.querySelector('.actions').innerHTML = `
+                    <button class="icon-btn edit" title="Edit">
+                        <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                    </button>
+                    <button class="icon-btn archive" title="Archive">
+                        <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                    </button>
+                `;
+
+                activeStudentBody.appendChild(row);
+            }
+        });
+
+        // Client‑side search (searches only within the currently visible view)
+        const searchInput = document.querySelector('.student-search');
+        searchInput.addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const visibleView = document.querySelector('.table-view-container.show');
+            if (!visibleView) return;
+
+            const rows = visibleView.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        // (Optional) Profile dropdown toggle – keep existing behavior
+        const userProfile = document.querySelector('.user-photo-wrapper');
+        const dropdown = document.querySelector('.profile-dropdown');
+        userProfile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        });
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('active');
+        });
     </script>
-
-
 </body>
 </html>

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .layout-wrapper {
     display: flex;
     flex-direction: row;
@@ -34,6 +38,7 @@
 }
 
 /* ITEMS INSIDE DASHBOARD LEFT */
+
 .dashboard-left-heading {
     width: 100%;
     display: flex;
@@ -381,3 +386,333 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* TEACHER SECTION / PAGE */
+
+.teacher-search {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+    width: 200px;
+}
+
+.teacher-management {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.teacher-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.teacher-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #303781;
+    margin: 0;
+}
+
+.teacher-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.add-teacher-btn {
+
+    background-color: #FBD117;
+    color: #303781;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.add-teacher-btn:hover {
+    background-color: #f6c800;
+}
+
+.teacher-table-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.teacher-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.teacher-table thead {
+    background-color: #303781;
+    color: #ffffff;
+}
+
+.teacher-table th,
+.teacher-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.teacher-table tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.course-tag {
+    display: inline-block;
+    background-color: #e9efff;
+    color: #303781;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-right: 4px;
+}
+
+.status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.status.active {
+    background-color: #2bb673;
+    color: #ffffff;
+}
+
+.status.archived {
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+.status-action {
+    border: none;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Archive */
+.status-action.archive {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.status-action.archive:hover {
+    background-color: #fecaca;
+}
+
+/* Restore */
+.status-action.restore {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.status-action.restore:hover {
+    background-color: #bae6fd;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.actions-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    height: auto;
+}
+
+.icon-btn.view { color: #2d7ff9; }
+.icon-btn.edit { color: #f97316; }
+.icon-btn.delete { color: #d93025; }
+
+
+.teacher-archived-section {
+    margin-top: 40px;
+}
+
+.archived-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #303781;
+    margin-bottom: 12px;
+}
+
+.teacher-table-card.archived {
+    opacity: 0.9;
+}
+
+.status.archived {
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+/* Toggle view switcher */
+.view-toggle {
+    display: flex;
+    gap: 0.5rem;
+}
+.toggle-btn {
+    padding: 0.6rem 1.4rem;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.toggle-btn.active {
+    background: #1e3a8a;
+    color: #fff;
+    border-color: #1e3a8a;
+}
+.toggle-btn:hover:not(.active) {
+    background: #e2e8f0;
+}
+
+/* Hide/view containers */
+.table-view-container {
+    display: none;
+}
+.table-view-container.show {
+    display: block;
+}
+
+
+/* STUDENT SECTION / PAGE */
+
+.student-management {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #303781;
+    margin: 0;
+}
+
+.student-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Search */
+.student-search {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+    width: 200px;
+}
+
+/* Add Button */
+.add-student-btn {
+    background-color: #FBD117;
+    color: #303781;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.add-student-btn:hover {
+    background-color: #f6c800;
+}
+
+/* Table Card */
+.student-table-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.student-table thead {
+    background-color: #303781;
+    color: #ffffff;
+}
+
+.student-table th,
+.student-table td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.student-table tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.student-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Optional hover */
+.student-table tbody tr:hover {
+    background-color: #f9faff;
+}
+
+/* EVALUATION SECTION / PAGE */
+
+
+/* COURSE SECTION / PAGE */
+
+

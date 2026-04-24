@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | NUCLICKS</title>
+    <title>Teachers | NUCLICKS Super Admin</title>
 
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/SuperAdmin.css">
     <link rel="icon" href="assets/logos/NU_ICON_Blue.png">
+
+    
 </head>
 <body>
     <div class="layout-wrapper">
         <div class="sidebar-menu">
             <img class="sidebar-menu-icon" src="assets/logos/NU_ICON_White.png" alt="NULP Logo">
-            <a href="SuperAdminDashboard.html" class="sidebar-menu-content current"><img src="assets/icons/home-blue.svg" alt="Home" class="menu-icon"/>Home</a>
+            <a href="SuperAdminDashboard.html" class="sidebar-menu-content"><img src="assets/icons/home-white.svg" alt="Home" class="menu-icon"/>Home</a>
             <a href="SuperAdmin_Evaluation.html" class="sidebar-menu-content"><img src="assets/icons/class-white.svg" alt="Evaluation" class="menu-icon"/>Evaluation</a>
-            <a href="SuperAdmin_Teachers.html" class="sidebar-menu-content"><img src="assets/icons/people-white.svg" alt="Teachers" class="menu-icon"/>Teachers</a>
+            <a href="SuperAdmin_Teachers.html" class="sidebar-menu-content current"><img src="assets/icons/people-blue.svg" alt="Teachers" class="menu-icon"/>Teachers</a>
             <a href="SuperAdmin_Students.html" class="sidebar-menu-content"><img src="assets/icons/grad-white.svg" alt="Students" class="menu-icon"/>Students</a>
             <a href="SuperAdmin_Course.html" class="sidebar-menu-content"><img src="assets/icons/book-white.svg" alt="Course" class="menu-icon"/>Courses</a>
         </div>
         <div class="dashboard-panel">
-            <!-- <div class="dashboard-left"> -->
-                <div class="dashboard-left-heading">
-                    <div class="logo-student-db">
-                        <img class="logo-head" src="assets/logos/NULIPA_Logo_Blue.png" alt="NULP Logo">
-                        <div class="title-head">
+            <div class="dashboard-left-heading">
+                <div class="logo-student-db">
+                    <img class="logo-head" src="assets/logos/NULIPA_Logo_Blue.png" alt="NULP Logo">
+                    <div class="title-head">
                         <p class="title-text">Super Admin</p>
                         <p class="title-text">Dashboard</p>
-                        </div>
                     </div>
-                    
-                    <div class="notif-info-container">
+                </div>
+                
+                <div class="notif-info-container">
                     <div class="notif-bell-wrapper">
                         <img src="assets/icons/bell.svg" alt="Notifications" class="notif-bell-icon">
-
                         <span class="notif-badge">17</span>
                     </div>
 
@@ -43,89 +43,97 @@
                             <p class="user-email">josephstalin@gmail.com</p>
                         </div>
                         <div class="user-photo-wrapper">
-                        <img src="assets/sample_user.jpg" alt="Sample User" class="user-photo">
-
+                            <img src="assets/sample_user.jpg" alt="Sample User" class="user-photo">
                             <button class="user-status-toggle">✓</button>
 
-                            <!-- DROPDOWN -->
                             <div class="profile-dropdown">
                                 <a href="index.html" class="dropdown-item logout-btn">Logout</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="admin-content">
 
-                </div>
-                <div class="admin-content">
-                    <!-- STATS -->
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon blue">👤</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Total Teachers</p>
-                                <p class="stat-value">45</p>
-                            </div>
-                        </div>
+                <!-- TEACHER MANAGEMENT -->
+                <div class="teacher-management">
 
-                        <div class="stat-card">
-                            <div class="stat-icon green">🎓</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Total Students</p>
-                                <p class="stat-value">1,234</p>
-                            </div>
-                        </div>
+                    <!-- HEADER with toggle -->
+                    <div class="teacher-header">
+                        <h2 class="teacher-title">Teacher Management</h2>
 
-                        <div class="stat-card">
-                            <div class="stat-icon purple">📘</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Active Courses</p>
-                                <p class="stat-value">28</p>
+                        <div class="teacher-actions">
+                            <div class="view-toggle">
+                                <button id="btnActiveTeachers" class="toggle-btn active">Active Teachers</button>
+                                <button id="btnArchivedTeachers" class="toggle-btn">Archived Teachers</button>
                             </div>
-                        </div>
-
-                        <div class="stat-card">
-                            <div class="stat-icon orange">📝</div>
-                            <div class="stat-info">
-                                <p class="stat-label">Pending Tests</p>
-                                <p class="stat-value">12</p>
-                            </div>
+                            <input type="text" class="teacher-search" placeholder="Search teachers...">
+                            <button class="add-teacher-btn">+ Add Teacher</button>
                         </div>
                     </div>
 
-                    <!-- RECENT ACTIVITY -->
-                    <div class="activity-card">
-                        <h3 class="activity-title">Recent Activity</h3>
+                    <!-- ACTIVE TEACHERS TABLE (visible by default) -->
+                    <div id="activeTeacherView" class="table-view-container show">
+                        <div class="teacher-table-card">
+                            <table class="teacher-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Department</th>
+                                        <th>Courses</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
 
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">New teacher registered</p>
-                                <p class="activity-sub">John Doe</p>
-                            </div>
-                            <span class="activity-time">2 hours ago</span>
+                                <tbody>
+                                    <tr data-teacher-id="1">
+                                        <td>John Doe</td>
+                                        <td>john.doe@nu.edu.ph</td>
+                                        <td>+63 912 345 6789</td>
+                                        <td>Mathematics</td>
+                                        <td>
+                                            <span class="course-tag">Advanced Math</span>
+                                            <span class="course-tag">Calculus I</span>
+                                        </td>
+                                        <td><span class="status active">Active</span></td>
+                                        
+                                        <td class="actions">
+                                            <button class="icon-btn edit" title="Edit">
+                                                <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                                            </button>
+                                            <button class="icon-btn archive" title="Archive">
+                                                <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
 
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">Course published</p>
-                                <p class="activity-sub">Advanced Mathematics</p>
+                    <!-- ARCHIVED TEACHERS TABLE (hidden initially) -->
+                    <div id="archivedTeacherView" class="table-view-container">
+                        <div class="teacher-archived-section">
+                            <h3 class="archived-title">Archived Teachers</h3>
+                            <div class="teacher-table-card archived">
+                                <table class="teacher-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Department</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="archivedTeachers">
+                                        <!-- Rows moved here dynamically by archive action -->
+                                    </tbody>
+                                </table>
                             </div>
-                            <span class="activity-time">4 hours ago</span>
-                        </div>
-
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">Student enrolled</p>
-                                <p class="activity-sub">Jane Smith</p>
-                            </div>
-                            <span class="activity-time">5 hours ago</span>
-                        </div>
-
-                        <div class="activity-item">
-                            <div>
-                                <p class="activity-main">Evaluation submitted</p>
-                                <p class="activity-sub">Chemistry Course</p>
-                            </div>
-                            <span class="activity-time">2 days ago</span>
                         </div>
                     </div>
 
@@ -135,20 +143,101 @@
     </div>
 
     <script>
-    const userProfile = document.querySelector('.user-photo-wrapper');
-    const dropdown = document.querySelector('.profile-dropdown');
+        /* =========================================
+           TEACHER MANAGEMENT ACTIONS + VIEW TOGGLE
+        ========================================= */
 
-    userProfile.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('active');
-    });
+        const activeTableBody = document.querySelector('#activeTeacherView .teacher-table tbody');
+        const archivedTableBody = document.getElementById('archivedTeachers');
 
-    document.addEventListener('click', () => {
-    dropdown.classList.remove('active');
-    });
+        // -- View Toggle --
+        const btnActive = document.getElementById('btnActiveTeachers');
+        const btnArchived = document.getElementById('btnArchivedTeachers');
+        const activeView = document.getElementById('activeTeacherView');
+        const archivedView = document.getElementById('archivedTeacherView');
 
+        btnActive.addEventListener('click', function () {
+            activeView.classList.add('show');
+            archivedView.classList.remove('show');
+            btnActive.classList.add('active');
+            btnArchived.classList.remove('active');
+        });
+
+        btnArchived.addEventListener('click', function () {
+            archivedView.classList.add('show');
+            activeView.classList.remove('show');
+            btnArchived.classList.add('active');
+            btnActive.classList.remove('active');
+        });
+
+        /* EVENT DELEGATION for archive/restore/edit */
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.icon-btn');
+            if (!btn) return;
+
+            const row = btn.closest('tr');
+            const name = row.children[0].innerText;
+
+            /* EDIT */
+            if (btn.classList.contains('edit')) {
+                alert(`Edit form for ${name} will open here`);
+                return;
+            }
+
+            /* ARCHIVE */
+            if (btn.classList.contains('archive')) {
+                if (!confirm(`Archive ${name}? The account will be disabled.`)) return;
+
+                // Change status
+                row.querySelector('.status').outerHTML =
+                    `<span class="status archived">Archived</span>`;
+
+                // Replace actions with Restore button only
+                row.querySelector('.actions').innerHTML = `
+                    <button class="icon-btn restore" title="Restore">
+                        <img src="assets/icons/restore-blue.svg" alt="Restore" class="actions-icon">
+                    </button>
+                `;
+
+                archivedTableBody.appendChild(row);
+                return;
+            }
+
+            /* RESTORE */
+            if (btn.classList.contains('restore')) {
+                if (!confirm(`Restore ${name}?`)) return;
+
+                // Restore status
+                row.querySelector('.status').outerHTML =
+                    `<span class="status active">Active</span>`;
+
+                // Restore actions: edit + archive
+                row.querySelector('.actions').innerHTML = `
+                    <button class="icon-btn edit" title="Edit">
+                        <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                    </button>
+                    <button class="icon-btn archive" title="Archive">
+                        <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                    </button>
+                `;
+
+                activeTableBody.appendChild(row);
+            }
+        });
+
+        /* Search (simple client-side filter) */
+        const searchInput = document.querySelector('.teacher-search');
+        searchInput.addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const visibleView = document.querySelector('.table-view-container.show');
+            if (!visibleView) return;
+
+            const rows = visibleView.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
     </script>
-
-
 </body>
 </html>
