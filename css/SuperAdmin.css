@@ -30,24 +30,36 @@ html, body {
     /* height: auto – already set, keep it */
 }
 
-/* .layout-wrapper {
-    display: flex;
-    flex-direction: row;
-    background-color: #EBEBEB;
-    height: 100%;
-} */
-
-/* CONTENT FOR STUDENT DASHBOARD */
-/* .dashboard-panel {
+.course-title {
     font-family: 'Poppins', sans-serif;
-    padding: 30px 20px 30px 20px;
-    
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-} */
+    margin: 0px;
+    padding: 0px;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.instructor {
+    font-size: 16px;
+    font-weight: 400;
+    color: #424242;
+
+    margin: 10px 0 0 0;
+    padding: 0px;
+}
+.instructor-name {
+    font-weight: 700;
+}
+
+.upload-label {
+  flex: 8;               
+  display: flex;
+  flex-direction: row !important;
+  
+
+   width: 100%;
+    align-items: center; /* ✅ vertical centering */
+    gap: 16px;
+}
 
 .dashboard-left {
   flex: 8;               
@@ -1171,4 +1183,191 @@ html, body {
 .add-course-btn:hover {
     background-color: #f6c800;
     color: #303781;
+}
+
+/* Upload Modules */
+
+/* ============================= */
+/* UPLOAD COURSE MATERIAL PAGE   */
+/* ============================= */
+
+.upload-card {
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.upload-header {
+    margin-bottom: 20px;
+}
+.upload-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #303781;
+    margin: 0;
+}
+.upload-subtitle {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+}
+
+/* SECTION LABEL */
+.section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* MATERIAL TYPE */
+.material-options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.material-option {
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    background: #ffffff;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.material-option img {
+    width: 24px;
+    height: 24px;
+}
+
+.material-option .option-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.material-option .option-sub {
+    font-size: 11px;
+    color: #777;
+}
+
+.material-option.active {
+    border-color: #2d7ff9;
+    background: #f0f6ff;
+}
+
+.material-option.link {
+    border-color: #FBD117;
+}
+
+/* UPLOAD AREA */
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.upload-main {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.upload-sub {
+    font-size: 12px;
+    color: #777;
+    margin: 6px 0 14px;
+}
+
+.browse-btn {
+    border: none;
+    background: #e5e7eb;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.upload-limit {
+    font-size: 11px;
+    color: #777;
+    margin-top: 12px;
+}
+
+/* UPLOADED TABLE */
+.uploaded-table {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.uploaded-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 12px 16px;
+    align-items: center;
+}
+
+.uploaded-row.header {
+    background: #f5f5f5;
+    font-size: 11px;
+    font-weight: 700;
+    color: #555;
+}
+
+.file-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.file-name img {
+    width: 18px;
+}
+
+.status.uploaded {
+    color: #22c55e;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+/* ACTIONS */
+.upload-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.secondary-btn {
+    flex: 1;
+    margin-right: 12px;
+    border: none;
+    background: #e5e7eb;
+    padding: 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.primary-btn {
+    flex: 1;
+    border: none;
+    background: #303781;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
 }
