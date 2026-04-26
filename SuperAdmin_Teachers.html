@@ -139,13 +139,51 @@
 
                 </div>
             </div>
+
+            <!-- ADD TEACHER MODAL -->
+            <div class="modal-overlay" id="addTeacherModal">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Add New Teacher</h2>
+                        <button class="modal-close" id="closeModalBtn">&times;</button>
+                    </div>
+                    <form id="addTeacherForm">
+                        <div class="form-group">
+                            <label for="teacherName">Full Name</label>
+                            <input type="text" id="teacherName" required placeholder="e.g. Maria Dela Cruz">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacherEmail">Email</label>
+                            <input type="email" id="teacherEmail" required placeholder="maria@nu.edu.ph">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacherPhone">Phone</label>
+                            <input type="text" id="teacherPhone" required placeholder="+63 9XX XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacherDepartment">Department</label>
+                            <select id="teacherDepartment" required>
+                                <option value="" disabled selected>Select department</option>
+                                <option>Mathematics</option>
+                                <option>Science</option>
+                                <option>English</option>
+                                <option>Computer Studies</option>
+                                <option>Social Sciences</option>
+                            </select>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="cancel-btn" id="cancelAddTeacher">Cancel</button>
+                            <button type="submit" class="save-btn">Save Teacher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
-        /* =========================================
-           TEACHER MANAGEMENT ACTIONS + VIEW TOGGLE
-        ========================================= */
+        /* ===== TEACHER MANAGEMENT ACTIONS + VIEW TOGGLE ===== */
 
         const activeTableBody = document.querySelector('#activeTeacherView .teacher-table tbody');
         const archivedTableBody = document.getElementById('archivedTeachers');
@@ -170,6 +208,74 @@
             btnActive.classList.remove('active');
         });
 
+        /* ===== MODAL CONTROL ===== */
+        const addTeacherBtn = document.querySelector('.add-teacher-btn');
+        const modalOverlay = document.getElementById('addTeacherModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelAddTeacher');
+        const addTeacherForm = document.getElementById('addTeacherForm');
+
+        // Open modal
+        addTeacherBtn.addEventListener('click', function () {
+            modalOverlay.classList.add('active');
+        });
+
+        // Close modal functions
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            addTeacherForm.reset();
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Optional: close when clicking outside the card
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        // Handle form submission: add new row to active teachers
+        addTeacherForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Collect values
+            const name = document.getElementById('teacherName').value.trim();
+            const email = document.getElementById('teacherEmail').value.trim();
+            const phone = document.getElementById('teacherPhone').value.trim();
+            const department = document.getElementById('teacherDepartment').value;
+
+            if (!name || !email || !phone || !department) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Create new row HTML
+            const newRow = document.createElement('tr');
+            newRow.setAttribute('data-teacher-id', Date.now()); // unique ID
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${phone}</td>
+                <td>${department}</td>
+                <td><span class="course-tag">-</span></td> <!-- placeholder, courses can be assigned later -->
+                <td><span class="status active">Active</span></td>
+                <td class="actions">
+                    <button class="icon-btn edit" title="Edit">
+                        <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                    </button>
+                    <button class="icon-btn archive" title="Archive">
+                        <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                    </button>
+                </td>
+            `;
+
+            // Add to active table
+            activeTableBody.appendChild(newRow);
+
+            // Close modal and reset form
+            closeModal();
+        });
+
         /* EVENT DELEGATION for archive/restore/edit */
         document.addEventListener('click', function (e) {
             const btn = e.target.closest('.icon-btn');
@@ -188,11 +294,9 @@
             if (btn.classList.contains('archive')) {
                 if (!confirm(`Archive ${name}? The account will be disabled.`)) return;
 
-                // Change status
                 row.querySelector('.status').outerHTML =
                     `<span class="status archived">Archived</span>`;
 
-                // Replace actions with Restore button only
                 row.querySelector('.actions').innerHTML = `
                     <button class="icon-btn restore" title="Restore">
                         <img src="assets/icons/restore-blue.svg" alt="Restore" class="actions-icon">
@@ -207,11 +311,9 @@
             if (btn.classList.contains('restore')) {
                 if (!confirm(`Restore ${name}?`)) return;
 
-                // Restore status
                 row.querySelector('.status').outerHTML =
                     `<span class="status active">Active</span>`;
 
-                // Restore actions: edit + archive
                 row.querySelector('.actions').innerHTML = `
                     <button class="icon-btn edit" title="Edit">
                         <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
