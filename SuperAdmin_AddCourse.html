@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course | NUCLICKS Super Admin</title>
+
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/SuperAdmin.css">
+    <link rel="icon" href="assets/logos/NU_ICON_Blue.png">
+
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- ========== SIDEBAR ========== -->
+        <div class="sidebar-menu">
+            <img class="sidebar-menu-icon" src="assets/logos/NU_ICON_White.png" alt="NULP Logo">
+            <a href="SuperAdminDashboard.html" class="sidebar-menu-content"><img src="assets/icons/home-white.svg" alt="Home" class="menu-icon"/>Home</a>
+            <a href="SuperAdmin_Evaluation.html" class="sidebar-menu-content"><img src="assets/icons/class-white.svg" alt="Evaluation" class="menu-icon"/>Evaluation</a>
+            <a href="SuperAdmin_Teachers.html" class="sidebar-menu-content"><img src="assets/icons/people-white.svg" alt="Teachers" class="menu-icon"/>Teachers</a>
+            <a href="SuperAdmin_Students.html" class="sidebar-menu-content"><img src="assets/icons/grad-white.svg" alt="Students" class="menu-icon"/>Students</a>
+            <a href="SuperAdmin_Course.html" class="sidebar-menu-content current"><img src="assets/icons/book-blue.svg" alt="Course" class="menu-icon"/>Courses</a>
+        </div>
+
+        <!-- ========== MAIN PANEL ========== -->
+        <div class="dashboard-panel">
+            <!-- HEADER -->
+            <div class="dashboard-left-heading">
+                <div class="logo-student-db">
+                    <img class="logo-head" src="assets/logos/NULIPA_Logo_Blue.png" alt="NULP Logo">
+                    <div class="title-head">
+                        <p class="title-text">Super Admin</p>
+                        <p class="title-text">Dashboard</p>
+                    </div>
+                </div>
+
+                <div class="notif-info-container">
+                    <div class="notif-bell-wrapper">
+                        <img src="assets/icons/bell.svg" alt="Notifications" class="notif-bell-icon">
+                        <span class="notif-badge">17</span>
+                    </div>
+
+                    <div class="user-info">
+                        <div class="user-name-email">
+                            <p class="user-name">Stalin, Joseph</p>
+                            <p class="user-email">josephstalin@gmail.com</p>
+                        </div>
+                        <div class="user-photo-wrapper">
+                            <img src="assets/sample_user.jpg" alt="Sample User" class="user-photo">
+                            <button class="user-status-toggle">✓</button>
+                            <div class="profile-dropdown">
+                                <a href="index.html" class="dropdown-item logout-btn">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM CONTENT -->
+            <div class="admin-content">
+                <div class="upload-card course-form-card">
+                    <div class="upload-header">
+                        <h2 class="upload-title">Add New Course</h2>
+                        <p class="upload-subtitle">Fill in the details to create a new course</p>
+                    </div>
+
+                    <form id="addCourseForm" action="#" method="post" style="display: flex; flex-direction: column; gap: 20px;">
+                        <!-- Course Name -->
+                        <div>
+                            <label for="courseName" class="section-label">Course Name</label>
+                            <input type="text" id="courseName" name="courseName" placeholder="e.g. Advanced Mathematics" required>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label for="courseDesc" class="section-label">Description</label>
+                            <textarea id="courseDesc" name="courseDesc" rows="4" placeholder="Brief description of the course..." required></textarea>
+                        </div>
+
+                        <!-- Teacher Assignment -->
+                        <div>
+                            <label for="courseTeacher" class="section-label">Assigned Teacher</label>
+                            <select id="courseTeacher" name="courseTeacher" required>
+                                <option value="" disabled selected>Select a teacher</option>
+                                <option value="1">John Doe</option>
+                                <option value="2">Jade Caponpon</option>
+                                <option value="3">Maria Santos</option>
+                                <option value="4">Robert Cruz</option>
+                            </select>
+                        </div>
+
+                        <!-- Student Capacity -->
+                        <div>
+                            <label for="studentCapacity" class="section-label">Student Capacity</label>
+                            <input type="number" id="studentCapacity" name="studentCapacity" min="1" placeholder="e.g. 30" required>
+                        </div>
+
+                        <!-- Date Range -->
+                        <div>
+                            <label class="section-label">Course Availability</label>
+                            <div class="date-row">
+                                <div class="date-field">
+                                    <label for="startDate" style="display:block; font-size:12px; color:#555; margin-bottom:4px;">Start Date</label>
+                                    <input type="date" id="startDate" name="startDate" required>
+                                </div>
+                                <div class="date-field">
+                                    <label for="endDate" style="display:block; font-size:12px; color:#555; margin-bottom:4px;">End Date</label>
+                                    <input type="date" id="endDate" name="endDate" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="course-form-actions">
+                            <a href="SuperAdmin_Course.html" class="secondary-btn">Cancel</a>
+                            <button type="submit" class="primary-btn">Create Course</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Profile dropdown toggle (unchanged)
+        const userProfile = document.querySelector('.user-photo-wrapper');
+        const dropdown = document.querySelector('.profile-dropdown');
+        userProfile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        });
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('active');
+        });
+
+        // Form submission demo
+        document.getElementById('addCourseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('courseName').value.trim();
+            const desc = document.getElementById('courseDesc').value.trim();
+            const teacher = document.getElementById('courseTeacher').value;
+            const capacity = document.getElementById('studentCapacity').value;
+            const start = document.getElementById('startDate').value;
+            const end = document.getElementById('endDate').value;
+
+            if (!name || !desc || !teacher || !capacity || !start || !end) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Simple validation: end must be after start
+            if (new Date(end) <= new Date(start)) {
+                alert('End date must be after the start date.');
+                return;
+            }
+
+            // Simulate creation
+            alert(`Course "${name}" created successfully!\nCapacity: ${capacity}\nAvailable: ${start} to ${end}`);
+            window.location.href = 'SuperAdmin_Course.html';
+        });
+    </script>
+</body>
+</html>

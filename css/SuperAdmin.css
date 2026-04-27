@@ -1359,6 +1359,9 @@ html, body {
     border-radius: 999px;
     font-weight: 600;
     cursor: pointer;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
 }
 
 .primary-btn {
@@ -1367,6 +1370,204 @@ html, body {
     background: #303781;
     color: #ffffff;
     padding: 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+}
+
+/* ===== ADD COURSE FORM (use inside .upload-card) ===== */
+
+/* Make sure inputs/selects/textareas fit the card */
+.upload-card input:not([type="date"]),
+.upload-card select,
+.upload-card textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+/* Date inputs need the same treatment but are already `input` */
+.upload-card input[type="date"] {
+    box-sizing: border-box;
+    width: 100%;              
+    padding: 10px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+.upload-card textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Focus states */
+.upload-card input:focus,
+.upload-card select:focus,
+.upload-card textarea:focus {
+    outline: none;
+    border-color: #2d7ff9;
+    box-shadow: 0 0 0 3px rgba(45, 127, 249, 0.1);
+}
+
+/* Label inside upload card */
+.upload-card .section-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+/* ===== SIDE‑BY‑SIDE DATE FIELDS ===== */
+.date-row {
+    display: flex;          /* already set, but be explicit */
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 0;
+}
+
+.date-row .date-field {
+    flex: 1;                /* each field takes equal space */
+    width: auto;            /* let flex control the width */
+}
+
+/* New class for the form action bar – use this instead of overriding .upload-actions */
+.course-form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+}
+
+/* ===== ADD COURSE FORM CARD WIDTH ===== */
+.course-form-card {
+    width: 92%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== MODAL OVERLAY (for Add Teacher) ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s;
+}
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    width: 90%;
+    max-width: 560px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #303781;
+    margin: 0;
+}
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+.modal-close:hover {
+    color: #303781;
+}
+
+/* Form inside modal uses the same .upload-card input styles already defined */
+.modal-card .form-group {
+    margin-bottom: 16px;
+}
+.modal-card .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+.modal-card .form-group input,
+.modal-card .form-group select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+    color: #1e293b;
+}
+.modal-card .form-group input:focus,
+.modal-card .form-group select:focus {
+    outline: none;
+    border-color: #2d7ff9;
+    box-shadow: 0 0 0 3px rgba(45,127,249,0.1);
+}
+
+/* Buttons in the modal */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+.modal-actions .cancel-btn {
+    background: #e5e7eb;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+}
+.modal-actions .save-btn {
+    background: #303781;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
     border-radius: 999px;
     font-weight: 700;
     cursor: pointer;
