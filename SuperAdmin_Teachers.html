@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/SuperAdmin.css">
     <link rel="icon" href="assets/logos/NU_ICON_Blue.png">
-
-    
 </head>
 <body>
     <div class="layout-wrapper">
@@ -72,7 +70,7 @@
                         </div>
                     </div>
 
-                    <!-- ACTIVE TEACHERS TABLE (visible by default) -->
+                    <!-- ACTIVE TEACHERS TABLE -->
                     <div id="activeTeacherView" class="table-view-container show">
                         <div class="teacher-table-card">
                             <table class="teacher-table">
@@ -81,25 +79,21 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Department</th>
                                         <th>Courses</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <tr data-teacher-id="1">
                                         <td>John Doe</td>
                                         <td>john.doe@nu.edu.ph</td>
                                         <td>+63 912 345 6789</td>
-                                        <td>Mathematics</td>
                                         <td>
                                             <span class="course-tag">Advanced Math</span>
                                             <span class="course-tag">Calculus I</span>
                                         </td>
                                         <td><span class="status active">Active</span></td>
-                                        
                                         <td class="actions">
                                             <button class="icon-btn edit" title="Edit">
                                                 <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
@@ -114,7 +108,7 @@
                         </div>
                     </div>
 
-                    <!-- ARCHIVED TEACHERS TABLE (hidden initially) -->
+                    <!-- ARCHIVED TEACHERS TABLE -->
                     <div id="archivedTeacherView" class="table-view-container">
                         <div class="teacher-archived-section">
                             <h3 class="archived-title">Archived Teachers</h3>
@@ -124,13 +118,12 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Department</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="archivedTeachers">
-                                        <!-- Rows moved here dynamically by archive action -->
+                                        <!-- Rows moved here dynamically -->
                                     </tbody>
                                 </table>
                             </div>
@@ -140,14 +133,16 @@
                 </div>
             </div>
 
-            <!-- ADD TEACHER MODAL -->
-            <div class="modal-overlay" id="addTeacherModal">
+            <!-- ADD / EDIT TEACHER MODAL (Department removed) -->
+            <div class="modal-overlay" id="teacherModal">
                 <div class="modal-card">
                     <div class="modal-header">
-                        <h2 class="modal-title">Add New Teacher</h2>
+                        <h2 class="modal-title" id="modalTitle">Add New Teacher</h2>
                         <button class="modal-close" id="closeModalBtn">&times;</button>
                     </div>
-                    <form id="addTeacherForm">
+                    <form id="teacherForm">
+                        <input type="hidden" id="editingRowId" value="">
+
                         <div class="form-group">
                             <label for="teacherName">Full Name</label>
                             <input type="text" id="teacherName" required placeholder="e.g. Maria Dela Cruz">
@@ -160,20 +155,11 @@
                             <label for="teacherPhone">Phone</label>
                             <input type="text" id="teacherPhone" required placeholder="+63 9XX XXX XXXX">
                         </div>
-                        <div class="form-group">
-                            <label for="teacherDepartment">Department</label>
-                            <select id="teacherDepartment" required>
-                                <option value="" disabled selected>Select department</option>
-                                <option>Mathematics</option>
-                                <option>Science</option>
-                                <option>English</option>
-                                <option>Computer Studies</option>
-                                <option>Social Sciences</option>
-                            </select>
-                        </div>
+                        <!-- Department removed -->
+
                         <div class="modal-actions">
-                            <button type="button" class="cancel-btn" id="cancelAddTeacher">Cancel</button>
-                            <button type="submit" class="save-btn">Save Teacher</button>
+                            <button type="button" class="cancel-btn" id="cancelTeacherBtn">Cancel</button>
+                            <button type="submit" class="save-btn" id="saveTeacherBtn">Save Teacher</button>
                         </div>
                     </form>
                 </div>
@@ -183,17 +169,30 @@
     </div>
 
     <script>
-        /* ===== TEACHER MANAGEMENT ACTIONS + VIEW TOGGLE ===== */
-
+        /* ===== DOM REFERENCES ===== */
         const activeTableBody = document.querySelector('#activeTeacherView .teacher-table tbody');
         const archivedTableBody = document.getElementById('archivedTeachers');
 
-        // -- View Toggle --
+        // View toggle
         const btnActive = document.getElementById('btnActiveTeachers');
         const btnArchived = document.getElementById('btnArchivedTeachers');
         const activeView = document.getElementById('activeTeacherView');
         const archivedView = document.getElementById('archivedTeacherView');
 
+        // Modal
+        const addTeacherBtn = document.querySelector('.add-teacher-btn');
+        const modalOverlay = document.getElementById('teacherModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const saveBtn = document.getElementById('saveTeacherBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelTeacherBtn');
+        const teacherForm = document.getElementById('teacherForm');
+        const editingRowIdInput = document.getElementById('editingRowId');
+        const inputName = document.getElementById('teacherName');
+        const inputEmail = document.getElementById('teacherEmail');
+        const inputPhone = document.getElementById('teacherPhone');
+
+        /* ===== VIEW TOGGLE ===== */
         btnActive.addEventListener('click', function () {
             activeView.classList.add('show');
             archivedView.classList.remove('show');
@@ -209,74 +208,95 @@
         });
 
         /* ===== MODAL CONTROL ===== */
-        const addTeacherBtn = document.querySelector('.add-teacher-btn');
-        const modalOverlay = document.getElementById('addTeacherModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const cancelBtn = document.getElementById('cancelAddTeacher');
-        const addTeacherForm = document.getElementById('addTeacherForm');
-
-        // Open modal
-        addTeacherBtn.addEventListener('click', function () {
+        function openAddModal() {
+            teacherForm.reset();
+            editingRowIdInput.value = '';
+            modalTitle.textContent = 'Add New Teacher';
+            saveBtn.textContent = 'Save Teacher';
             modalOverlay.classList.add('active');
-        });
-
-        // Close modal functions
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            addTeacherForm.reset();
         }
 
+        function openEditModal(row) {
+            // Row cells: Name(0), Email(1), Phone(2), Courses(3), Status(4), Actions(5)
+            const cells = row.querySelectorAll('td');
+            const name = cells[0].innerText;
+            const email = cells[1].innerText;
+            const phone = cells[2].innerText;
+
+            inputName.value = name;
+            inputEmail.value = email;
+            inputPhone.value = phone;
+
+            editingRowIdInput.value = row.dataset.teacherId || '';
+
+            modalTitle.textContent = 'Edit Teacher';
+            saveBtn.textContent = 'Update Teacher';
+            modalOverlay.classList.add('active');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            teacherForm.reset();
+            editingRowIdInput.value = '';
+        }
+
+        addTeacherBtn.addEventListener('click', openAddModal);
         closeModalBtn.addEventListener('click', closeModal);
         cancelBtn.addEventListener('click', closeModal);
-
-        // Optional: close when clicking outside the card
         modalOverlay.addEventListener('click', function (e) {
             if (e.target === modalOverlay) closeModal();
         });
 
-        // Handle form submission: add new row to active teachers
-        addTeacherForm.addEventListener('submit', function (e) {
+        /* ===== FORM SUBMISSION (Add / Edit) ===== */
+        teacherForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Collect values
-            const name = document.getElementById('teacherName').value.trim();
-            const email = document.getElementById('teacherEmail').value.trim();
-            const phone = document.getElementById('teacherPhone').value.trim();
-            const department = document.getElementById('teacherDepartment').value;
+            const name = inputName.value.trim();
+            const email = inputEmail.value.trim();
+            const phone = inputPhone.value.trim();
 
-            if (!name || !email || !phone || !department) {
+            if (!name || !email || !phone) {
                 alert('Please fill in all fields.');
                 return;
             }
 
-            // Create new row HTML
-            const newRow = document.createElement('tr');
-            newRow.setAttribute('data-teacher-id', Date.now()); // unique ID
-            newRow.innerHTML = `
-                <td>${name}</td>
-                <td>${email}</td>
-                <td>${phone}</td>
-                <td>${department}</td>
-                <td><span class="course-tag">-</span></td> <!-- placeholder, courses can be assigned later -->
-                <td><span class="status active">Active</span></td>
-                <td class="actions">
-                    <button class="icon-btn edit" title="Edit">
-                        <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
-                    </button>
-                    <button class="icon-btn archive" title="Archive">
-                        <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
-                    </button>
-                </td>
-            `;
+            const editingRow = editingRowIdInput.value
+                ? document.querySelector(`tr[data-teacher-id="${editingRowIdInput.value}"]`)
+                : null;
 
-            // Add to active table
-            activeTableBody.appendChild(newRow);
+            if (editingRow) {
+                // Update existing row
+                const cells = editingRow.querySelectorAll('td');
+                cells[0].innerText = name;
+                cells[1].innerText = email;
+                cells[2].innerText = phone;
+                // Courses and Status remain unchanged
+            } else {
+                // Add new row
+                const newRow = document.createElement('tr');
+                newRow.setAttribute('data-teacher-id', Date.now());
+                newRow.innerHTML = `
+                    <td>${name}</td>
+                    <td>${email}</td>
+                    <td>${phone}</td>
+                    <td><span class="course-tag">-</span></td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="actions">
+                        <button class="icon-btn edit" title="Edit">
+                            <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                        </button>
+                        <button class="icon-btn archive" title="Archive">
+                            <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                        </button>
+                    </td>
+                `;
+                activeTableBody.appendChild(newRow);
+            }
 
-            // Close modal and reset form
             closeModal();
         });
 
-        /* EVENT DELEGATION for archive/restore/edit */
+        /* ===== EVENT DELEGATION for edit/archive/restore ===== */
         document.addEventListener('click', function (e) {
             const btn = e.target.closest('.icon-btn');
             if (!btn) return;
@@ -286,7 +306,7 @@
 
             /* EDIT */
             if (btn.classList.contains('edit')) {
-                alert(`Edit form for ${name} will open here`);
+                openEditModal(row);
                 return;
             }
 
@@ -294,13 +314,22 @@
             if (btn.classList.contains('archive')) {
                 if (!confirm(`Archive ${name}? The account will be disabled.`)) return;
 
-                row.querySelector('.status').outerHTML =
-                    `<span class="status archived">Archived</span>`;
+                // Remove courses cell and status cell? We keep Name, Email, Status, Actions for archived view.
+                // We'll reorganize the row to match archived table columns.
+                const cells = row.querySelectorAll('td');
+                const email = cells[1].innerText;
+                const status = cells[4].innerHTML; // status is now 4th index (0-based) because no department
 
-                row.querySelector('.actions').innerHTML = `
-                    <button class="icon-btn restore" title="Restore">
-                        <img src="assets/icons/restore-blue.svg" alt="Restore" class="actions-icon">
-                    </button>
+                // Replace row content for archived view (Name, Email, Status, Actions)
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${email}</td>
+                    ${status}
+                    <td class="actions">
+                        <button class="icon-btn restore" title="Restore">
+                            <img src="assets/icons/restore-blue.svg" alt="Restore" class="actions-icon">
+                        </button>
+                    </td>
                 `;
 
                 archivedTableBody.appendChild(row);
@@ -311,23 +340,34 @@
             if (btn.classList.contains('restore')) {
                 if (!confirm(`Restore ${name}?`)) return;
 
-                row.querySelector('.status').outerHTML =
-                    `<span class="status active">Active</span>`;
+                // Rebuild to active row format: Name, Email, Phone, Courses, Status, Actions
+                const cells = row.querySelectorAll('td');
+                const email = cells[1].innerText;
+                // Phone was lost after archiving, so set placeholder
+                const phone = '-';
+                const status = cells[2].innerHTML; // status is now 2nd index
 
-                row.querySelector('.actions').innerHTML = `
-                    <button class="icon-btn edit" title="Edit">
-                        <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
-                    </button>
-                    <button class="icon-btn archive" title="Archive">
-                        <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
-                    </button>
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${email}</td>
+                    <td>${phone}</td>
+                    <td><span class="course-tag">-</span></td>
+                    ${status}
+                    <td class="actions">
+                        <button class="icon-btn edit" title="Edit">
+                            <img src="assets/icons/edit-blue.svg" alt="Edit" class="actions-icon">
+                        </button>
+                        <button class="icon-btn archive" title="Archive">
+                            <img src="assets/icons/archive-blue.svg" alt="Archive" class="actions-icon">
+                        </button>
+                    </td>
                 `;
 
                 activeTableBody.appendChild(row);
             }
         });
 
-        /* Search (simple client-side filter) */
+        /* Search filter */
         const searchInput = document.querySelector('.teacher-search');
         searchInput.addEventListener('input', function () {
             const filter = this.value.toLowerCase();
